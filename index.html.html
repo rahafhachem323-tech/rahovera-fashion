@@ -1,0 +1,995 @@
+index.html
+Rahovera Fashion — Couture Source Code
+VS Code Ready Code Document
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rahovera Fashion — Couture</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?
+family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500&display=s
+wap" rel="stylesheet">
+<style>
+/* =====================================================
+   RESET
+===================================================== */
+* {
+
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;}
+html {
+    scroll-behavior: smooth;
+}
+body {
+    background: #0a0a0a;
+    color: #f5f0e8;
+    font-family: "Montserrat", sans-serif;
+    overflow-x: hidden;
+}
+a {
+
+    color: inherit;
+    text-decoration: none;}
+/* =====================================================
+   LOADING SCREEN
+===================================================== */
+
+/* =====================================================
+   CUSTOM CURSOR
+===================================================== */
+.cursor {
+    width: 10px;
+    height: 10px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #d8bd8a;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 10000;
+    transform: translate(-50%, -50%);
+}
+.cursor-ring {
+    width: 35px;
+    height: 35px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    border: 1px solid rgba(216,189,138,.7);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: .15s ease;
+}
+/* =====================================================
+   NAVIGATION
+===================================================== */
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 90px;
+    padding: 0 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    background: rgba(8,8,8,.35);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(255,255,255,.07);
+}
+.logo {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 31px;
+    letter-spacing: 5px;
+    color: #e2c899;
+}
+.logo small {
+    display: block;
+    text-align: center;
+    font-family: "Montserrat", sans-serif;
+    font-size: 7px;
+    letter-spacing: 6px;
+    margin-top: -5px;
+}
+nav ul {
+    display: flex;
+    gap: 42px;
+    list-style: none;
+}
+nav a {
+    position: relative;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #eee;
+    transition: .4s;
+}
+nav a::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 1px;
+    left: 0;
+    bottom: -8px;
+    background: #d8bd8a;
+    transition: .4s;
+}
+nav a:hover {
+    color: #d8bd8a;
+}
+nav a:hover::after {
+    width: 100%;
+}
+/* =====================================================
+   HERO
+===================================================== */
+.hero {
+    height: 100vh;
+    min-height: 700px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background:
+        linear-gradient(
+                    rgba(121, 123, 48, 0.35),
+                    rgba(0,0,0,0.75)
+                ),
+        url("hero.jpg.png");
+    background-size: cover;
+    
+    overflow: hidden;
+}
+.hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(
+            circle,
+            transparent 20%,
+            rgba(0,0,0,.55)
+        );
+    pointer-events: none;
+}
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1000px;
+    animation: heroText 2s ease;
+}
+.hero-label {
+    font-size: 10px;
+    letter-spacing: 7px;
+    color: #d8bd8a;
+    margin-bottom: 30px;
+}
+.hero h1 {
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(75px, 12vw, 170px);
+    line-height: .75;
+    font-weight: 300;
+    letter-spacing: 5px;
+}
+.hero h1 span {
+    display: block;
+    font-style: italic;
+}
+.hero-subtitle {
+    margin-top: 45px;
+    font-size: 10px;
+    letter-spacing: 6px;
+    color: #ddd;
+}
+.hero-button {
+    display: inline-block;
+    margin-top: 45px;
+    padding: 17px 45px;
+    border: 1px solid #d8bd8a;
+    font-size: 9px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    transition: .5s;
+}
+.hero-button:hover {
+    background: #d8bd8a;
+    color: #080808;
+    transform: translateY(-5px);
+}
+.scroll {
+    position: absolute;
+    bottom: 35px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 8px;
+    letter-spacing: 4px;
+    color: #aaa;
+    z-index: 3;
+}
+@keyframes heroText {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+/* =====================================================
+   INTRO
+===================================================== */
+.intro {
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 100px 20px;
+}
+.intro-content {
+    max-width: 800px;
+}
+.eyebrow {
+    color: #d8bd8a;
+    font-size: 9px;
+    letter-spacing: 6px;
+}
+.intro h2 {
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(50px, 7vw, 90px);
+    font-weight: 300;
+    line-height: .95;
+    margin: 25px 0;
+}
+.intro h2 i {
+    color: #d8bd8a;
+}
+.intro p {
+    max-width: 570px;
+    margin: auto;
+    color: #999;
+    font-size: 12px;
+    line-height: 2;
+}
+/* =====================================================
+   COLLECTION
+===================================================== */
+.collection {
+    padding: 120px 7%;
+   background:
+        linear-gradient(
+                    rgba(121, 123, 48, 0.35),
+                    rgba(0,0,0,0.75)
+                )
+}
+.section-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    margin-bottom: 65px;
+}
+.section-head span {
+    color: #d8bd8a;
+    font-size: 9px;
+    letter-spacing: 5px;
+}
+.section-head h2 {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 70px;
+    font-weight: 300;
+}
+/* =====================================================
+   LUXURY GALLERY
+===================================================== */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 25px;
+    align-items: start;
+}
+/* GENERAL CARD */
+.fashion-card {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    background: #151515;
+}
+/* IMAGE */
+.fashion-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: brightness(.82);
+    transition:
+        transform 1.2s ease,
+        filter 1.2s ease;
+}
+.fashion-card:hover img {
+    transform: scale(1.06);
+    filter: brightness(.58);
+}
+/* =====================================================
+   EDITORIAL POSITIONS
+===================================================== */
+/* 1 */
+.card-1 {
+    grid-column: 1 / 5;
+    height: 560px;
+}
+/* 2 — LARGE CENTER */
+.card-2 {
+    grid-column: 5 / 9;
+    height: 720px;
+    margin-top: 100px;
+}
+/* 3 */
+.card-3 {
+    grid-column: 9 / 13;
+    height: 560px;
+}
+/* 4 */
+.card-4 {
+    grid-column: 1 / 5;
+    height: 650px;
+    margin-top: 80px;
+}
+/* 5 — LARGE CENTER */
+.card-5 {
+    grid-column: 5 / 9;
+    height: 760px;
+    margin-top: 0;
+}
+/* 6 */
+.card-6 {
+    grid-column: 9 / 13;
+    height: 650px;
+    margin-top: 80px;
+}
+/* 7 */
+.card-7 {
+    grid-column: 1 / 5;
+    height: 600px;
+    margin-top: 100px;
+}
+/* 8 */
+.card-8 {
+    grid-column: 5 / 9;
+    height: 700px;
+    margin-top: 0;
+}
+/* 9 */
+.card-9 {
+    grid-column: 9 / 13;
+    height: 600px;
+    margin-top: 100px;
+}
+/* 10 — FINAL CENTER PIECE */
+.card-10 {
+    grid-column: 4 / 10;
+    height: 780px;
+    margin-top: 100px;
+}
+/* =====================================================
+   FASHION INFO
+===================================================== */
+.fashion-info {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding: 40px;
+    background:
+        linear-gradient(
+            transparent,
+            rgba(0,0,0,.95)
+        );
+    transform: translateY(20px);
+    opacity: 0;
+    transition: .6s;
+}
+.fashion-card:hover .fashion-info {
+    opacity: 1;
+    transform: translateY(0);
+}
+.fashion-info small {
+    color: #d8bd8a;
+    font-size: 8px;
+    letter-spacing: 4px;
+}
+.fashion-info h3 {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 42px;
+    font-weight: 400;
+    margin-top: 8px;
+}
+/* =====================================================
+   MOBILE
+===================================================== */
+@media(max-width: 850px) {
+    .gallery {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+    .fashion-card,
+    .card-1,
+    .card-2,
+    .card-3,
+    .card-4,
+    .card-5,
+    .card-6,
+    .card-7,
+    .card-8,
+    .card-9,
+    .card-10 {
+        grid-column: 1;
+        height: 600px;
+        margin-top: 0;}
+    }
+/* =====================================================
+   ABOUT
+===================================================== */
+.about {
+    padding: 150px 7%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    align-items: center;
+}
+.about-image {
+    height: 650px;
+    overflow: hidden;
+}
+.about-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 1s;
+}
+.about-image:hover img {
+    transform: scale(1.04);
+}
+.about-content span {
+    color: #d8bd8a;
+    font-size: 9px;
+    letter-spacing: 5px;
+}
+.about-content h2 {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 80px;
+    font-weight: 300;
+    line-height: .85;
+    margin: 25px 0 35px;
+}
+.about-content p {
+    max-width: 500px;
+    color: #999;
+    font-size: 12px;
+    line-height: 2;
+}
+.signature {
+    margin-top: 40px;
+    font-family: "Cormorant Garamond", serif;
+    font-size: 40px;
+    font-style: italic;
+    color: #d8bd8a;
+}
+/* =====================================================
+   QUOTE
+===================================================== */
+.quote {
+    padding: 150px 20px;
+    text-align: center;
+   background:  linear-gradient( 
+                    rgba(121, 123, 48, 0.35),
+                    rgba(0,0,0,0.75)
+                );
+}
+.quote p {
+    max-width: 850px;
+    margin: auto;
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(40px, 6vw, 75px);
+    font-weight: 300;
+    line-height: 1;
+}
+.quote span {
+    display: block;
+    margin-top: 35px;
+    font-family: "Montserrat", sans-serif;
+    color: #d8bd8a;
+    font-size: 8px;
+    letter-spacing: 5px;
+}
+/* =====================================================
+   CONTACT
+===================================================== */
+.contact {
+    padding: 150px 20px;
+    text-align: center;
+}
+.contact span {
+    color: #d8bd8a;
+    font-size: 9px;
+    letter-spacing: 6px;
+}
+.contact h2 {
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(55px, 8vw, 100px);
+    font-weight: 300;
+    line-height: .9;
+    margin: 25px 0;
+}
+.contact p {
+    max-width: 500px;
+    margin: auto;
+    color: #888;
+    font-size: 12px;
+    line-height: 2;
+}
+.contact-button {
+    display: inline-block;
+    margin-top: 40px;
+    padding: 17px 50px;
+    border: 1px solid #d8bd8a;
+    color: #f5f0e8;
+    background: transparent;
+    font-family: "Montserrat",sans-serif;
+    font-size: 9px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all .5s ease;
+    cursor: pointer;
+}
+.contact-button:hover {
+    background: #d8bd8a;
+    color:#090909;
+    border-color: #d8bd8a;
+    transform: translateY(-5px);
+}
+/* =====================================================
+   FOOTER
+===================================================== */
+footer {
+    padding: 45px 7%;
+    border-top: 1px solid rgba(255,255,255,.08);
+    display: flex;
+    justify-content: space-between;
+    color: #666;
+    font-size: 8px;
+    letter-spacing: 3px;
+}
+/* =====================================================
+   SCROLL REVEAL
+===================================================== */
+.reveal {
+    opacity: 0;
+    transform: translateY(60px);
+    transition: 1.2s ease;
+}
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+/* =====================================================
+   MOBILE
+===================================================== */
+@media(max-width: 850px) {
+    nav {
+        height: 75px;
+        padding: 0 5%;
+    }
+    nav ul {
+        gap: 15px;
+    }
+    nav a {
+        font-size: 7px;
+        letter-spacing: 1px;
+    }
+    .logo {
+        font-size: 23px;
+    }
+    .gallery {
+        grid-template-columns: 1fr;
+    }
+    .fashion-card:nth-child(2) {
+        margin-top: 0;
+    }
+    .fashion-card img,
+    .fashion-card:nth-child(2) img {
+        height: 600px;
+    }
+    .about {
+        grid-template-columns: 1fr;
+        gap: 60px;
+    }
+    .about-image {
+        height: 500px;
+    }
+    .about-content h2 {
+        font-size: 65px;
+    }
+    .section-head h2 {
+        font-size: 55px;
+    }
+    footer {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+}
+@media(max-width: 500px) {
+
+    /* NAVIGATION */
+    nav {
+        height: 75px;
+        padding: 0 10px;
+        gap: 8px;
+    }
+
+    nav ul {
+        display: flex;
+        gap: 9px;
+        align-items: center;
+    }
+
+    nav a {
+        font-size: 6px;
+        letter-spacing: 0.8px;
+    }
+
+    .logo {
+        font-size: 18px;
+        letter-spacing: 3px;
+        white-space: nowrap;
+    }
+
+    .logo small {
+        font-size: 5px;
+        letter-spacing: 3px;
+        margin-top: -3px;
+    }
+
+    /* HERO IMAGE */
+    .hero {
+        min-height: 100vh;
+        height: 100vh;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-color: #050505;
+    }
+
+    .hero h1 {
+        font-size: 75px;
+    }
+
+    .hero-label {
+        letter-spacing: 4px;
+    }
+}
+/* Hide cursor on touch devices */
+@media(max-width: 850px) {
+    .cursor,
+    .cursor-ring {
+        display: none;
+    }
+    
+}
+
+
+    
+</style>
+</head>
+<body>
+<!-- =====================================================
+     LOADER
+===================================================== -->
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+<nav>
+    <a href="#home" class="logo">
+        RAHOVERA
+        <small>
+            FASHION
+        </small>
+    </a>
+    <ul>
+        <li>
+            <a href="#home">Home</a>
+        </li>
+        <li>
+            <a href="#collection">Collection</a>
+        </li>
+        <li>
+            <a href="#about">The House</a>
+        </li>
+        <li>
+            <a href="#contact">Contact</a>
+        </li>
+    </ul>
+</nav>
+<!-- =====================================================
+     HERO
+===================================================== -->
+<section class="hero" id="home">
+    <div class="hero-content">
+        <div class="hero-label">
+            LUXURY FASHION HOUSE
+        </div>
+        <h1>
+            Rahovera
+            <span>
+                Couture
+            </span>
+        </h1>
+        <div class="hero-subtitle">
+            WHERE ELEGANCE BECOMES ART
+        </div>
+        <a href="#collection" class="hero-button">
+            Discover Collection
+        </a>
+    </div>
+    <div class="scroll">
+        SCROLL TO DISCOVER
+    </div>
+</section>
+<!-- =====================================================
+     INTRO
+===================================================== -->
+<section class="intro reveal">
+    <div class="intro-content">
+        <div class="eyebrow">
+            THE ESSENCE
+        </div>
+        <h2>
+            Elegance is not seen.
+            <br>
+            It is <i>felt.</i>
+        </h2>
+        <p>
+            Rahovera Fashion is a celebration of refined
+            femininity, timeless silhouettes and the beauty
+            found in every carefully crafted detail.
+        </p>
+    </div>
+</section>
+<!-- =====================================================
+     COLLECTION
+===================================================== -->
+<section class="collection" id="collection">
+    <div class="section-head reveal">
+        <div>
+            <span>01 — COLLECTION</span>
+        </div>
+        <h1>RAHOVERA</h1>
+    </div>
+    <div class="gallery">
+        <!-- DRESS 1 -->
+        <div class="fashion-card card-1 reveal">
+            <img src="luxury3.jpg.jpg" alt="Rahovera Couture Dress">
+            <div class="fashion-info">
+                <small>EVENING COUTURE</small>
+                <h3>Élan</h3>
+            </div>
+        </div>
+        <!-- DRESS 2 -->
+        <div class="fashion-card card-2 reveal">
+            <img src="luxury4.jpg.png" alt="Rahovera Couture Dress">
+            <div class="fashion-info">
+                <small>HAUTE COUTURE</small>
+                <h3>Étoile</h3>
+            </div>
+        </div>
+        <!-- DRESS 3 -->
+        <div class="fashion-card card-3 reveal">
+            <img src="luxury5.jpg.png" alt="Rahovera Couture Dress">
+            <div class="fashion-info">
+                <small>SIGNATURE PIECE</small>
+                <h3>Veloura</h3>
+            </div>
+        </div>
+        <!-- DRESS 4 -->
+        <div class="fashion-card card-4 reveal">
+            <img src="lux1.jpg.jpg" alt="Rahovera Couture Dress">
+            <div class="fashion-info">
+                <small>EVENING COUTURE</small>
+                <h3>Seraphine</h3>
+            </div>
+        </div>
+        <!-- DRESS 5 -->
+        <div class="fashion-card card-5 reveal">
+            <img src="lux2.jpg.jpg" alt="Rahovera Couture Dress">
+            <div class="fashion-info">
+                <small>HAUTE COUTURE</small>
+                <h3>Amoura</h3>
+            </div>
+        </div>
+        <!-- DRESS 6 -->
+        <div class="fashion-card card-6 reveal">
+            <img src="lux3.jpg.jpg" alt="Rahovera Couture Dress">
+            <div class="fashion-info">
+                <small>SIGNATURE PIECE</small>
+                <h3>Celestine</h3>
+            </div>
+        </div>
+        <!-- DRESS 7 -->
+        <div class="fashion-card card-7 reveal">
+            <img src="luxury6.jpg.png" alt="Rahovera Couture Dress">
+            <div class="fashion-info">
+                <small>EVENING COUTURE</small>
+                <h3>Roselle</h3>
+            </div>
+        </div>
+        <!-- DRESS 8 -->
+        <div class="fashion-card card-8 reveal">
+            <img src="luxury9.jpg.png" alt="Rahovera Couture Dress">
+            <div class="fashion-info">
+                <small>HAUTE COUTURE</small>
+                <h3>Valencia</h3>
+            </div>
+        </div>
+        <!-- DRESS 9 -->
+        <div class="fashion-card card-9 reveal">
+            <img src="luxury8.jpg.png" alt="Rahovera Couture Dress">
+            <div class="fashion-info">
+                <small>SIGNATURE PIECE</small>
+                <h3>Elara</h3>
+            </div>
+        </div>
+        <!-- DRESS 10 -->
+        <div class="fashion-card card-10 reveal">
+            <img src="luxury7.jpg.png" alt="Rahovera Couture Dress">
+            <div class="fashion-info">
+                <small>HAUTE COUTURE</small>
+                <h3>Arabella</h3>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- =====================================================
+     ABOUT
+===================================================== -->
+<section class="about" id="about">
+    <div class="about-image reveal">
+        <img
+            src="rahovera logo.jpg.jpg"
+            alt="Rahovera Fashion"
+        >
+    </div>
+    <div class="about-content reveal">
+        <span>
+            02 — THE HOUSE OF RAHOVERA
+        </span>
+        <h2>
+            Beauty
+            <br>
+            in every
+            <br>
+            detail.
+        </h2>
+        <p>
+            Rahovera Fashion brings together delicate
+            craftsmanship, graceful silhouettes and
+            contemporary vision to create pieces that
+            feel timeless.
+        </p>
+        <div class="signature">
+            Rahovera
+        </div>
+    </div>
+</section>
+<!-- =====================================================
+     QUOTE
+===================================================== -->
+<section class="quote reveal">
+    <p>
+        "A dress should not simply
+        <br>
+        be worn. It should be remembered."
+    </p>
+    <span>
+        RAHOVERA FASHION
+    </span>
+</section>
+<!-- =====================================================
+     CONTACT
+===================================================== -->
+<section class="contact" id="contact">
+    <span>
+        PRIVATE APPOINTMENTS
+    </span>
+    <h2>
+        Let's create
+        <br>
+        something timeless.
+    </h2>
+    <p>
+        For collaborations, custom designs and
+        private fashion inquiries, get in touch
+        with Rahovera Fashion.
+    </p>
+    <a
+        href="contact.png.png" class="contact-button"
+    >
+        Contact Rahovera
+    </a>
+</section>
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+<footer>
+    <div>
+        © 2026 RAHOVERA FASHION
+    </div>
+    <div>
+        ALL RIGHTS RESERVED
+    </div>
+</footer>
+<script>
+/* =====================================================
+   LOADER
+===================================================== */
+
+/* =====================================================
+   CUSTOM CURSOR
+===================================================== */
+const cursor = document.querySelector(".cursor");
+const ring = document.querySelector(".cursor-ring");
+document.addEventListener("mousemove", function(e) {
+    cursor.style.left = e.clientX + "px";
+    cursor.style.top = e.clientY + "px";
+    setTimeout(function() {
+        ring.style.left = e.clientX + "px";
+        ring.style.top = e.clientY + "px";
+    }, 50);
+});
+/* =====================================================
+   SCROLL REVEAL
+===================================================== */
+const revealElements =
+    document.querySelectorAll(".reveal");
+function revealOnScroll() {
+    const windowHeight =
+        window.innerHeight;
+    revealElements.forEach(function(element) {
+        const elementTop =
+            element.getBoundingClientRect().top;
+        if(elementTop < windowHeight - 100) {
+            element.classList.add("active");
+        }
+    });
+}
+window.addEventListener(
+    "scroll",
+    revealOnScroll
+);
+revealOnScroll();
+/* =====================================================
+   HERO PARALLAX
+===================================================== */
+window.addEventListener("scroll", function() {
+    const hero =
+        document.querySelector(".hero");
+    const scroll =
+        window.scrollY;
+    if(scroll < window.innerHeight) {
+        hero.style.backgroundPosition =
+            "center " + (scroll * 0.35) + "px";
+    }
+});
+</script>
+</body>
+</html>
